@@ -12,6 +12,6 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        historyFragment = (HistoryFragment) getSupportFragmentManager().findFragmentById(R.id.history_fragment);
+       // historyFragment = (HistoryFragment) getSupportFragmentManager().findFragmentById(R.id.history_fragment);
     }
 }

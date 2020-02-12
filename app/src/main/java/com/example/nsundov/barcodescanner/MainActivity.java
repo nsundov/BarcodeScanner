@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
 
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
-    private String ISBN_URL = "https://www.googleapis.com/books/v1/volumes?q=isbn:";
+    private static final String ISBN_URL = "https://www.googleapis.com/books/v1/volumes?q=isbn:";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         {
             if(checkPermission())
             {
-                Toast.makeText(getApplicationContext(), "Permission already granted!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.granted), Toast.LENGTH_LONG).show();
             }
             else
             {
@@ -101,12 +101,12 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
 
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     if (cameraAccepted){
-                        Toast.makeText(getApplicationContext(), "Permission Granted, Now you can access camera", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.granted_msg), Toast.LENGTH_LONG).show();
                     }else {
-                        Toast.makeText(getApplicationContext(), "Permission Denied, You cannot access and camera", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.denied_msg), Toast.LENGTH_LONG).show();
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             if (shouldShowRequestPermissionRationale(CAMERA)) {
-                                showMessageOKCancel("You need to allow access to both the permissions",
+                                showMessageOKCancel(getString(R.string.allow_msg),
                                         new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
@@ -126,10 +126,10 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     }
 
     private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
-        new android.support.v7.app.AlertDialog.Builder(MainActivity.this)
+        new AlertDialog.Builder(MainActivity.this)
                 .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
+                .setPositiveButton(R.string.ok, okListener)
+                .setNegativeButton(R.string.cancel, null)
                 .create()
                 .show();
     }
@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Scan Result");
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         scannerView.resumeCameraPreview(MainActivity.this);
@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
                 alert1.show();
 
             } catch (JSONException e) {
-                Toast.makeText(MainActivity.this, "Knjiga nije pronađena", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, getString(R.string.not_found), Toast.LENGTH_LONG).show();
                 scannerView.resumeCameraPreview(MainActivity.this);
             }
 

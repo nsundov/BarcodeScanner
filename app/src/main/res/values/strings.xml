@@ -4,4 +4,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="history">History</string>
+    <string name="granted">Permission already granted!</string>
+    <string name="granted_msg">Permission Granted, Now you can access camera</string>
+    <string name="denied_msg">Permission Denied, You cannot access and camera</string>
+    <string name="allow_msg">You need to allow access to both the permissions</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="not_found">Knjiga nije pronađena</string>
+    <string name="delete_msg">Are you sure you want to delete it?</string>
 </resources>

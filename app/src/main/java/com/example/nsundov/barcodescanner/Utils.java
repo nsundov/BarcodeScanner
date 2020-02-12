@@ -32,4 +32,14 @@ public class Utils {
         }
         return arrayList;
     }
+
+    public void DeleteItemInHistory(Context context, int index){
+        ArrayList arrayList = loadOrderedCollection(context, "hiatory");
+        arrayList.remove(index);
+        JSONArray jsonArray = new JSONArray(arrayList);
+        SharedPreferences.Editor editor =  context.getSharedPreferences("prefs", Context.MODE_PRIVATE).edit();
+        editor.putString("history", jsonArray.toString());
+        editor.commit();
+    }
+
 }
