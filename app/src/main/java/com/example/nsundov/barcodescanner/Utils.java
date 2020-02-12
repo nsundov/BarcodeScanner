@@ -34,7 +34,7 @@ public class Utils {
     }
 
     public void DeleteItemInHistory(Context context, int index){
-        ArrayList arrayList = loadOrderedCollection(context, "hiatory");
+        ArrayList arrayList = loadOrderedCollection(context, "history");
         arrayList.remove(index);
         JSONArray jsonArray = new JSONArray(arrayList);
         SharedPreferences.Editor editor =  context.getSharedPreferences("prefs", Context.MODE_PRIVATE).edit();
